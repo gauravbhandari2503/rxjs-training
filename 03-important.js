@@ -17,6 +17,7 @@ const observable = of(users2, users).pipe(
         return (value.reduce(((sum, user) => sum + user.age), 0))/value.length;
     }),
     map((value) => {
+        console.log(value);
         if (value < 18) throw new Error ("Average age is too young")
         else return value;
     })

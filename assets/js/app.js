@@ -1,4 +1,4 @@
-const { fromEvent, of } = rxjs;
+const { fromEvent, of, from } = rxjs;
 const { debounceTime, map, switchMap, catchError } = rxjs.operators;
 
 const searchInput = document.getElementById('search');
@@ -18,7 +18,7 @@ fromEvent(searchInput, 'input').pipe(
   // Swtich map: Every time a new value comes in, cancel the previous operation and start a new one.
   switchMap(query => 
     // Creates an Observable from an Array
-    rxjs.from(fetchUsers(query)).pipe(
+    from(fetchUsers(query)).pipe(
       catchError(() => of([]))
     )
   )
